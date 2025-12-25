@@ -1,0 +1,26 @@
+server {
+    listen 80;
+    server_name myweb.local;
+
+    root /var/www/myweb.local;
+    index index.html;
+
+    location / {
+	try_files $uri $uri/ =404;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name myweb.local;
+
+    ssl_certificate /etc/ssl/certs/myweb.crt;
+    ssl_certificate_key /etc/ssl/private/myweb.key;
+
+    root /var/www/myweb.local;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
